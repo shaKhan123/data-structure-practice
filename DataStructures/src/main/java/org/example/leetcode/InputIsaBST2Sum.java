@@ -1,4 +1,4 @@
-package org.example.leetcode;
+package src.main.java.org.example.leetcode;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,12 +20,12 @@ import java.util.Set;
  */
 public class InputIsaBST2Sum {
 
-    public boolean findTarget(TreeNode root, int k) {
+    public boolean findTarget(org.example.leetcode.TreeNode root, int k) {
     Set<Integer> result = new HashSet<>();
         return dfsWithSet(root, k, result);
     }
 
-    public boolean dfsWithSet(TreeNode node, int k, Set<Integer> seen){
+    public boolean dfsWithSet(org.example.leetcode.TreeNode node, int k, Set<Integer> seen){
         if(node==null) return false;
         int complement =  k - node.val;
         if(seen.contains(complement)){
