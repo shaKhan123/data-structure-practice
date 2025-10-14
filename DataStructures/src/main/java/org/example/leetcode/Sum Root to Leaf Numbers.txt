@@ -1,0 +1,41 @@
+Tree:    1
+       /   \
+      2     3
+     / \
+    4   5
+
+DFS Traversal:
+dfs(1, 0): current = 0×10 + 1 = 1
+  dfs(2, 1): current = 1×10 + 2 = 12
+    dfs(4, 12): current = 12×10 + 4 = 124 → LEAF! Return 124
+    dfs(5, 12): current = 12×10 + 5 = 125 → LEAF! Return 125
+    return 124 + 125 = 249
+  dfs(3, 1): current = 1×10 + 3 = 13 → LEAF! Return 13
+  return 249 + 13 = 262
+
+Final answer: 262 ✓
+----------------------------------------------------
+ALGORITHM: Sum Root to Leaf Numbers
+
+FUNCTION sumNumbers(root):
+    RETURN dfs(root, 0)
+
+FUNCTION dfs(node, current_number):
+    IF node is NULL:
+        RETURN 0
+
+    // Build number digit by digit
+    current_number = current_number × 10 + node.val
+
+    // If leaf, return the complete number
+    IF node.left is NULL AND node.right is NULL:
+        RETURN current_number
+
+    // Otherwise, sum both subtrees
+    left_sum = dfs(node.left, current_number)
+    right_sum = dfs(node.right, current_number)
+
+    RETURN left_sum + right_sum
+
+Time Complexity: O(n)
+Space Complexity: O(h) where h = tree height

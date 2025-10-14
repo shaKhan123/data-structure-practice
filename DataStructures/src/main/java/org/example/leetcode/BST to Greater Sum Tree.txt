@@ -1,0 +1,25 @@
+ALGORITHM: BST to Greater Sum Tree
+
+GLOBAL VARIABLE:
+    running_sum = 0
+
+FUNCTION bstToGst(root):
+    CALL reverseInOrder(root)
+    RETURN root
+
+FUNCTION reverseInOrder(node):
+    // Base case
+    IF node is NULL:
+        RETURN
+
+    // Step 1: Process RIGHT subtree first (larger values)
+    CALL reverseInOrder(node.right)
+
+    // Step 2: Process CURRENT node
+    running_sum = running_sum + node.value
+    node.value = running_sum
+
+    // Step 3: Process LEFT subtree (smaller values)
+    CALL reverseInOrder(node.left)
+
+END ALGORITHM

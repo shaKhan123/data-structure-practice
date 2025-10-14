@@ -1,0 +1,32 @@
+FUNCTION isValidBST(root):
+    RETURN validate(root, -∞, +∞)
+
+FUNCTION validate(node, min_val, max_val):
+    IF node is NULL:
+        RETURN True
+
+    // Check global BST constraint
+    IF node.val <= min_val OR node.val >= max_val:
+        RETURN False
+
+    // Update bounds for subtrees
+    left_valid = validate(node.left, min_val, node.val)
+    right_valid = validate(node.right, node.val, max_val)
+
+    RETURN left_valid AND right_valid
+
+
+
+          5 (range: -∞ to +∞)
+         / \
+        3   8
+       / \ / \
+      2  4 7  9
+
+    Node 5: range (-∞, +∞) ✓
+    ├─ Left child 3: range (-∞, 5) ✓
+    │  ├─ Left child 2: range (-∞, 3) ✓
+    │  └─ Right child 4: range (3, 5) ✓
+    └─ Right child 8: range (5, +∞) ✓
+       ├─ Left child 7: range (5, 8) ✓
+       └─ Right child 9: range (8, +∞) ✓
